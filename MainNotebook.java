@@ -1,7 +1,6 @@
 package lesson6.HomeWork6;
 
 
-import lesson6.Cat;
 
 import java.util.*;
 
