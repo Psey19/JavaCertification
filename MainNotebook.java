@@ -6,26 +6,26 @@ import java.util.*;
 
 public class MainNotebook2 {
     public static void main(String[] args) {
-        Notebook notebook1 = new Notebook("notebook1", 8, 256, "Windows", "Black");
-        Notebook notebook2 = new Notebook("notebook2", 16, 256, "Windows", "Black");
-        Notebook notebook3 = new Notebook("notebook3", 32, 256, "Windows", "White");
-        Notebook notebook4 = new Notebook("notebook4", 8, 512, "Windows", "Black");
-        Notebook notebook5 = new Notebook("notebook5", 16, 512, "Windows", "White");
-        Notebook notebook6 = new Notebook("notebook6", 32, 512, "Windows", "Black");
-        Notebook notebook7 = new Notebook("notebook7", 8, 1024, "Windows", "White");
-        Notebook notebook8 = new Notebook("notebook8", 16, 1024, "Windows", "Black");
-        Notebook notebook9 = new Notebook("notebook9", 32, 1024, "Windows", "Black");
-        Notebook notebook10 = new Notebook("notebook10", 32, 1024, "Windows", "White");
-        Notebook notebook11 = new Notebook("notebook11", 8, 256, "macOS", "Black");
-        Notebook notebook12 = new Notebook("notebook12", 16, 256, "macOS", "White");
-        Notebook notebook13 = new Notebook("notebook13", 32, 256, "macOS", "White");
-        Notebook notebook14 = new Notebook("notebook14", 8, 512, "macOS", "White");
-        Notebook notebook15 = new Notebook("notebook15", 16, 512, "macOS", "Black");
-        Notebook notebook16 = new Notebook("notebook16", 32, 512, "macOS", "White");
-        Notebook notebook17 = new Notebook("notebook17", 8, 1024, "macOS", "White");
-        Notebook notebook18 = new Notebook("notebook18", 16, 1024, "macOS", "White");
-        Notebook notebook19 = new Notebook("notebook19", 32, 1024, "macOS", "Black");
-        Notebook notebook20 = new Notebook("notebook20", 32, 1024, "macOS", "White");
+        Notebook notebook1 = new Notebook("notebook1",8, 256, "Windows", "Black");
+        Notebook notebook2 = new Notebook("notebook2",16, 256, "Windows", "Black");
+        Notebook notebook3 = new Notebook("notebook3",32, 256, "Windows", "White");
+        Notebook notebook4 = new Notebook("notebook4",8, 512, "Windows", "Black");
+        Notebook notebook5 = new Notebook("notebook5",16, 512, "Windows", "White");
+        Notebook notebook6 = new Notebook("notebook6",32, 512, "Windows", "Black");
+        Notebook notebook7 = new Notebook("notebook7",8, 1024, "Windows", "White");
+        Notebook notebook8 = new Notebook("notebook8",16, 1024, "Windows", "Black");
+        Notebook notebook9 = new Notebook("notebook9",32, 1024, "Windows", "Black");
+        Notebook notebook10 = new Notebook("notebook10",32, 1024, "Windows", "White");
+        Notebook notebook11 = new Notebook("notebook11",8, 256, "macOS", "Black");
+        Notebook notebook12 = new Notebook("notebook12",16, 256, "macOS", "White");
+        Notebook notebook13 = new Notebook("notebook13",32, 256, "macOS", "White");
+        Notebook notebook14 = new Notebook("notebook14",8, 512, "macOS", "White");
+        Notebook notebook15 = new Notebook("notebook15",16, 512, "macOS", "Black");
+        Notebook notebook16 = new Notebook("notebook16",32, 512, "macOS", "White");
+        Notebook notebook17 = new Notebook("notebook17",8, 1024, "macOS", "White");
+        Notebook notebook18 = new Notebook("notebook18",16, 1024, "macOS", "White");
+        Notebook notebook19 = new Notebook("notebook19",32, 1024, "macOS", "Black");
+        Notebook notebook20 = new Notebook("notebook20",32, 1024, "macOS", "White");
 
 
         Set<Notebook> notebooks = new HashSet<>(Arrays.asList(notebook1, notebook2, notebook3, notebook4, notebook5,
@@ -105,23 +105,27 @@ public class MainNotebook2 {
             filteredNotebooks.removeIf(notebook -> notebook.getHdd() < minHdd);
         } else {
             System.out.println("Ошибка при выборе объема жёсткого диска");
+            filteredNotebooks.removeAll(filteredNotebooks);
         }
 
         if (osMap.containsKey(currentOs)) {
             filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getOs(), osMeaning));
         } else {
             System.out.println("Ошибка при выборе операционной системы");
+            filteredNotebooks.removeAll(filteredNotebooks);
         }
 
         if (colorMap.containsKey(currentColor)) {
             filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getColor(), colorMeaning));
         } else {
             System.out.println("Ошибка при выборе цвета");
+            filteredNotebooks.removeAll(filteredNotebooks);
         }
 
         if (filteredNotebooks.isEmpty()) {
-            System.out.println("Такого ноутбука, к сожалению, у нас сейчас нет"); //В нашем случае по всем запросам модели имеются
+            System.out.println("Попробуйте еще раз. Вводите значение только из предложенных вариантов!!!");
         } else {
+            System.out.println();
             System.out.println("Вот что мы вам можем предложить:");
             System.out.println();
             for (Notebook notebook : filteredNotebooks) {
