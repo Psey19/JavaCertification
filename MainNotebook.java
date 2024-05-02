@@ -4,28 +4,28 @@ package lesson6.HomeWork6;
 
 import java.util.*;
 
-public class MainNotebook {
+public class MainNotebook2 {
     public static void main(String[] args) {
-        Notebook notebook1 = new Notebook(8, 256, "Windows", "Black");
-        Notebook notebook2 = new Notebook(16, 256, "Windows", "Black");
-        Notebook notebook3 = new Notebook(32, 256, "Windows", "White");
-        Notebook notebook4 = new Notebook(8, 512, "Windows", "Black");
-        Notebook notebook5 = new Notebook(16, 512, "Windows", "White");
-        Notebook notebook6 = new Notebook(32, 512, "Windows", "Black");
-        Notebook notebook7 = new Notebook(8, 1024, "Windows", "White");
-        Notebook notebook8 = new Notebook(16, 1024, "Windows", "Black");
-        Notebook notebook9 = new Notebook(32, 1024, "Windows", "Black");
-        Notebook notebook10 = new Notebook(32, 1024, "Windows", "White");
-        Notebook notebook11 = new Notebook(8, 256, "macOS", "Black");
-        Notebook notebook12 = new Notebook(16, 256, "macOS", "White");
-        Notebook notebook13 = new Notebook(32, 256, "macOS", "White");
-        Notebook notebook14 = new Notebook(8, 512, "macOS", "White");
-        Notebook notebook15 = new Notebook(16, 512, "macOS", "Black");
-        Notebook notebook16 = new Notebook(32, 512, "macOS", "White");
-        Notebook notebook17 = new Notebook(8, 1024, "macOS", "White");
-        Notebook notebook18 = new Notebook(16, 1024, "macOS", "White");
-        Notebook notebook19 = new Notebook(32, 1024, "macOS", "Black");
-        Notebook notebook20 = new Notebook(32, 1024, "macOS", "White");
+        Notebook notebook1 = new Notebook("notebook1", 8, 256, "Windows", "Black");
+        Notebook notebook2 = new Notebook("notebook2", 16, 256, "Windows", "Black");
+        Notebook notebook3 = new Notebook("notebook3", 32, 256, "Windows", "White");
+        Notebook notebook4 = new Notebook("notebook4", 8, 512, "Windows", "Black");
+        Notebook notebook5 = new Notebook("notebook5", 16, 512, "Windows", "White");
+        Notebook notebook6 = new Notebook("notebook6", 32, 512, "Windows", "Black");
+        Notebook notebook7 = new Notebook("notebook7", 8, 1024, "Windows", "White");
+        Notebook notebook8 = new Notebook("notebook8", 16, 1024, "Windows", "Black");
+        Notebook notebook9 = new Notebook("notebook9", 32, 1024, "Windows", "Black");
+        Notebook notebook10 = new Notebook("notebook10", 32, 1024, "Windows", "White");
+        Notebook notebook11 = new Notebook("notebook11", 8, 256, "macOS", "Black");
+        Notebook notebook12 = new Notebook("notebook12", 16, 256, "macOS", "White");
+        Notebook notebook13 = new Notebook("notebook13", 32, 256, "macOS", "White");
+        Notebook notebook14 = new Notebook("notebook14", 8, 512, "macOS", "White");
+        Notebook notebook15 = new Notebook("notebook15", 16, 512, "macOS", "Black");
+        Notebook notebook16 = new Notebook("notebook16", 32, 512, "macOS", "White");
+        Notebook notebook17 = new Notebook("notebook17", 8, 1024, "macOS", "White");
+        Notebook notebook18 = new Notebook("notebook18", 16, 1024, "macOS", "White");
+        Notebook notebook19 = new Notebook("notebook19", 32, 1024, "macOS", "Black");
+        Notebook notebook20 = new Notebook("notebook20", 32, 1024, "macOS", "White");
 
 
         Set<Notebook> notebooks = new HashSet<>(Arrays.asList(notebook1, notebook2, notebook3, notebook4, notebook5,
@@ -35,78 +35,98 @@ public class MainNotebook {
     }
 
     public static void filterParamsNotebook(Set<Notebook> notebooks) {
-        Map<String, String> filter = new HashMap<>();
-        filter.put("1", "ОЗУ");
-        filter.put("2", "Объем ЖД");
-        filter.put("3", "Операционная система");
-        filter.put("4", "Цвет");
+        Map<String, String> ramMap = new HashMap<>();
+        ramMap.put("1", "8");
+        ramMap.put("2", "16");
+        ramMap.put("3", "32");
 
+        Map<String, String> hddMap = new HashMap<>();
+        hddMap.put("1", "256");
+        hddMap.put("2", "512");
+        hddMap.put("3", "1024");
+
+        Map<String, String> osMap = new HashMap<>();
+        osMap.put("1", "Windows");
+        osMap.put("2", "macOS");
+
+        Map<String, String> colorMap = new HashMap<>();
+        colorMap.put("1", "White");
+        colorMap.put("2", "Black");
+
+        System.out.println("Сейчас мы вам подберём ноутбук по интересующим вас параметрам!!!");
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите цифру для выбора интересующего параметра ноутбука: ");
-        System.out.println("1 - ОЗУ");
-        System.out.println("2 - Объем ЖД");
-        System.out.println("3 - Операционная система");
-        System.out.println("4 - Цвет");
-        String input = scanner.nextLine();
+
+        System.out.println("Выберите минимальный объем ОЗУ: ");
+        System.out.println("1 - 8ГБ");
+        System.out.println("2 - 16ГБ");
+        System.out.println("3 - 32ГБ");
+        String ramMin = scanner.nextLine();
+        String ramMeaning = ramMap.get(ramMin);
 
 
-        if (filter.containsKey(input)) {
-            if (input.equals("1")) {
-                System.out.println("Выберите минимальный объем ОЗУ (8, 16, 32) ГБ: ");
-            }
-            if (input.equals("2")) {
-                System.out.println("Выберите минимальный объем жесткого диска (256, 512, 1024) ГБ: ");
-            }
-            if (input.equals("3")) {
-                System.out.println("Выберите операционную систему (Windows, macOS): ");
-            }
-            if (input.equals("4")) {
-                System.out.println("Выберите цвет (Black, White): ");
-            }
-            String minParam = scanner.nextLine();
+        System.out.println("Выберите минимальный объем жёсткого диска: ");
+        System.out.println("1 - 256ГБ");
+        System.out.println("2 - 512ГБ");
+        System.out.println("3 - 1024ГБ");
+        String hddMin = scanner.nextLine();
+        String hddMeaning = hddMap.get(hddMin);
 
-            Set<Notebook> filteredNotebooks = new HashSet<>();
-            if (input.equals("1")) {
-                int minRam = Integer.parseInt(minParam);
-                for (Notebook notebook : notebooks) {
-                    if (notebook.getRam() >= minRam) {
-                        filteredNotebooks.add(notebook);
-                    }
-                }
-            }
-            if (input.equals("2")) {
-                int minHdd = Integer.parseInt(minParam);
-                for (Notebook notebook : notebooks) {
-                    if (notebook.getHdd() >= minHdd) {
-                        filteredNotebooks.add(notebook);
-                    }
-                }
-            }
-            if (input.equals("3")) {
-                for (Notebook notebook : notebooks) {
-                    if (notebook.getOs().equals(minParam)) {
-                        filteredNotebooks.add(notebook);
-                    }
-                }
-            }
-            if (input.equals("4")) {
-                for (Notebook notebook : notebooks) {
-                    if (notebook.getColor().equals(minParam)) {
-                        filteredNotebooks.add(notebook);
-                    }
-                }
-            }
 
-            if (filteredNotebooks.isEmpty()) {
-                System.out.println("Такого ноутбука, к сожалению, у нас сейчас нет");
-            } else {
-                for (Notebook notebook : filteredNotebooks) {
-                    System.out.println(notebook);
+
+        System.out.println("Выберите операционную систему: ");
+        System.out.println("1 - Windows");
+        System.out.println("2 - macOS");
+        String currentOs = scanner.nextLine();
+        String osMeaning = osMap.get(currentOs);
+
+
+        System.out.println("Выберите цвет: ");
+        System.out.println("1 - Белый");
+        System.out.println("2 - Черный");
+        String currentColor = scanner.nextLine();
+        String colorMeaning = colorMap.get(currentColor);
+
+
+        Set<Notebook> filteredNotebooks = new HashSet<>();
+        if (ramMap.containsKey(ramMin)) {
+            int minRam = Integer.parseInt(ramMeaning);
+            for (Notebook notebook : notebooks) {
+                if (notebook.getRam() >= minRam) {
+                    filteredNotebooks.add(notebook);
                 }
             }
-
         } else {
-            System.out.println("Выбран неверный критерий!");
+            System.out.println("Ошибка при выборе объема ОЗУ");
+        }
+
+        if (hddMap.containsKey(hddMin)) {
+            int minHdd = Integer.parseInt(hddMeaning);
+            filteredNotebooks.removeIf(notebook -> notebook.getHdd() < minHdd);
+        } else {
+            System.out.println("Ошибка при выборе объема жёсткого диска");
+        }
+
+        if (osMap.containsKey(currentOs)) {
+            filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getOs(), osMeaning));
+        } else {
+            System.out.println("Ошибка при выборе операционной системы");
+        }
+
+        if (colorMap.containsKey(currentColor)) {
+            filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getColor(), colorMeaning));
+        } else {
+            System.out.println("Ошибка при выборе цвета");
+        }
+
+        if (filteredNotebooks.isEmpty()) {
+            System.out.println("Такого ноутбука, к сожалению, у нас сейчас нет"); //В нашем случае по всем запросам модели имеются
+        } else {
+            System.out.println("Вот что мы вам можем предложить:");
+            System.out.println();
+            for (Notebook notebook : filteredNotebooks) {
+                System.out.println(notebook);
+            }
         }
     }
 }
