@@ -99,7 +99,7 @@ public class MainNotebook {
             }
 
             if (filteredNotebooks.isEmpty()) {
-                System.out.println("Такого ноутбука к сожалению у нас сейчас нет");
+                System.out.println("Такого ноутбука, к сожалению, у нас сейчас нет");
             } else {
                 for (Notebook notebook : filteredNotebooks) {
                     System.out.println(notebook);
