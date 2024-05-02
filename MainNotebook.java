@@ -107,7 +107,7 @@ public class MainNotebook {
             }
 
         } else {
-            System.out.println("Выбран неверный кретерий!");
+            System.out.println("Выбран неверный критерий!");
         }
     }
 }
