@@ -21,12 +21,14 @@ package lesson6.HomeWork6;
 import java.util.Objects;
 
 public class Notebook {
+    private String model;   //  Название модели
     private int ram;      // Объем ОЗУ (в ГБ)
     private int hdd;        // Объем жесткого диска (в ГБ)
     private String os;   //  Операционная система
     private String color;   //  Цвет
 
-    public Notebook(int ram, int hdd, String os, String color) {
+    public Notebook(String model,int ram, int hdd, String os, String color) {
+        this.model = model;
         this.ram = ram;
         this.hdd = hdd;
         this.os = os;
@@ -34,6 +36,10 @@ public class Notebook {
     }
 
     // Геттеры
+    public String getModel() {
+        return model;
+    }
+
     public int getRam() {
         return ram;
     }
@@ -50,6 +56,10 @@ public class Notebook {
     }
 
     // Сеттеры
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public void setRam(int ram) {
         this.ram = ram;
     }
@@ -68,7 +78,7 @@ public class Notebook {
 
     @Override
     public String toString() {
-        return "Объем ОЗУ (в ГБ): " + ram + ", Объем жесткого диска (в ГБ): "
+        return "Модель: " + model + ", Объем ОЗУ (в ГБ): " + ram + ", Объем жесткого диска (в ГБ): "
                 + hdd + ", Операционная система: " + os + ", Цвет: " + color;
     }
 
@@ -81,12 +91,13 @@ public class Notebook {
             return false;
         }
         Notebook notebook = (Notebook) obj;
-        return (ram == notebook.ram) && (hdd == notebook.hdd) && (os.equals(notebook.os)) && (color.equals(notebook.color));
+        return (model.equals(notebook.model)) && (ram == notebook.ram) && (hdd == notebook.hdd) && (os.equals(notebook.os)) && (color.equals(notebook.color));
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(ram, hdd, os, color);
+        return Objects.hash(model, ram, hdd, os, color);
     }
 }
+
