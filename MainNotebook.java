@@ -4,7 +4,7 @@ package lesson6.HomeWork6;
 
 import java.util.*;
 
-public class MainNotebook2 {
+public class MainNotebook {
     public static void main(String[] args) {
         Notebook notebook1 = new Notebook("notebook1",8, 256, "Windows", "Black");
         Notebook notebook2 = new Notebook("notebook2",16, 256, "Windows", "Black");
