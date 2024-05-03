@@ -87,6 +87,7 @@ public class MainNotebook {
         System.out.println("2 - Черный");
         String currentColor = scanner.nextLine();
         String colorMeaning = colorMap.get(currentColor);
+        scanner.close();
 
 
         Set<Notebook> filteredNotebooks = new HashSet<>();
