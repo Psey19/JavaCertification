@@ -58,7 +58,7 @@ public class MainNotebook {
         System.out.println();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Выберите минимальный объем ОЗУ: ");
+        System.out.println("Выберите минимальный желаемый объем ОЗУ: ");
         System.out.println("1 - 8ГБ");
         System.out.println("2 - 16ГБ");
         System.out.println("3 - 32ГБ");
@@ -67,7 +67,7 @@ public class MainNotebook {
         String ramMeaning = ramMap.get(ramMin);
 
 
-        System.out.println("Выберите минимальный объем жёсткого диска: ");
+        System.out.println("Выберите минимальный желаемый объем жёсткого диска: ");
         System.out.println("1 - 256ГБ");
         System.out.println("2 - 512ГБ");
         System.out.println("3 - 1024ГБ");
