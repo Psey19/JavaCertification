@@ -29,7 +29,7 @@ public class MainNotebook {
         Notebook notebook20 = new Notebook("notebook20", 32, 1024, "macOS", "White");
         Notebook notebook21 = new Notebook("notebook20", 32, 1024, "macOS", "White");
 
-        //Создадим множество для хранения всего ассортимента ноутбуков
+        //Создадим множество для хранения всего ассортимента ноутбуков из экземпляров класса Notebook
         Set<Notebook> notebooks = new HashSet<>(Arrays.asList(notebook1, notebook2, notebook3, notebook4, notebook5,
                 notebook6, notebook7, notebook8, notebook9, notebook10, notebook11, notebook12, notebook13,
                 notebook14, notebook15, notebook16, notebook17, notebook18, notebook19, notebook20, notebook21));
