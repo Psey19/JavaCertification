@@ -78,7 +78,7 @@ public class MainNotebook {
             System.out.println("1 - 8ГБ");
             System.out.println("2 - 16ГБ");
             System.out.println("3 - 32ГБ");
-            System.out.println("4 - Для меня этот параметр не принциально важен");
+            System.out.println("4 - Для меня этот параметр не принципиально важен");
             String ramMin = scanner.nextLine();
             String ramMeaning = ramMap.get(ramMin);
             if (ramMap.containsKey(ramMin)) {
@@ -106,7 +106,7 @@ public class MainNotebook {
             System.out.println("1 - 256ГБ");
             System.out.println("2 - 512ГБ");
             System.out.println("3 - 1024ГБ");
-            System.out.println("4 - Для меня этот параметр не принциально важен");
+            System.out.println("4 - Для меня этот параметр не принципиально важен");
             String hddMin = scanner.nextLine();
             String hddMeaning = hddMap.get(hddMin);
             if (hddMap.containsKey(hddMin)) {
@@ -128,7 +128,7 @@ public class MainNotebook {
             System.out.println("Выберите операционную систему: ");
             System.out.println("1 - Windows");
             System.out.println("2 - macOS");
-            System.out.println("3 - Для меня этот параметр не принциально важен");
+            System.out.println("3 - Для меня этот параметр не принципиально важен");
             String currentOs = scanner.nextLine();
             String osMeaning = osMap.get(currentOs);
             if (osMap.containsKey(currentOs)) {
