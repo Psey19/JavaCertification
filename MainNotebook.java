@@ -37,9 +37,7 @@ public class MainNotebook2 {
 
         //Создадим метод для фильтрации ноутбуков по критериям
     public static void filterParamsNotebook(Set<Notebook> notebooks) {
-        //Создадим Map`ы с критериями для фильтрации. 
-        //Также в критерии будет входить дополнительный вариант: "Для меня этот параметр не принциально важен",
-        //но по логике алгоритма, он не присутсвует в Map`е, а появится позднее, из рациональных соображений.
+        //Создадим Map`ы с критериями для фильтрации
         Map<String, String> ramMap = new HashMap<>();
         ramMap.put("1", "8");
         ramMap.put("2", "16");
@@ -66,14 +64,14 @@ public class MainNotebook2 {
 
         //Критерий для фильтрации по ОЗУ, который наполняет множество отфильтрованных ноутбуков
         //Вводим бесконечный цикл while для проверки ввода
-        String ramMin = "";
+
         while (true) {
             System.out.println("Выберите минимальный желаемый объем ОЗУ: ");
             System.out.println("1 - 8ГБ");
             System.out.println("2 - 16ГБ");
             System.out.println("3 - 32ГБ");
             System.out.println("4 - Для меня этот параметр не принциально важен");
-            ramMin = scanner.nextLine();
+            String ramMin = scanner.nextLine();
             String ramMeaning = ramMap.get(ramMin);
             if (ramMap.containsKey(ramMin)) {
                 int minRam = Integer.parseInt(ramMeaning);
@@ -90,18 +88,18 @@ public class MainNotebook2 {
                 System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
             }
         }
-        
+
         //Критерий для фильтрации по ЖД, который исключает из множества отфильтрованных ноутбуков
         //неподходящие этому критерию ноутбуки
         //Вводим бесконечный цикл while для проверки ввода
-        String hddMin = "";
+
         while (true) {
             System.out.println("Выберите минимальный желаемый объем жёсткого диска: ");
             System.out.println("1 - 256ГБ");
             System.out.println("2 - 512ГБ");
             System.out.println("3 - 1024ГБ");
             System.out.println("4 - Для меня этот параметр не принциально важен");
-            hddMin = scanner.nextLine();
+            String hddMin = scanner.nextLine();
             String hddMeaning = hddMap.get(hddMin);
             if (hddMap.containsKey(hddMin)) {
                 int minHdd = Integer.parseInt(hddMeaning);
@@ -113,17 +111,17 @@ public class MainNotebook2 {
                 System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
             }
         }
-        
+
         //Критерий для фильтрации по ОС, который исключает из множества отфильтрованных ноутбуков
         //неподходящие этому критерию ноутбуки
         //Вводим бесконечный цикл while для проверки ввода
-        String currentOs = "";
+
         while (true) {
             System.out.println("Выберите операционную систему: ");
             System.out.println("1 - Windows");
             System.out.println("2 - macOS");
             System.out.println("3 - Для меня этот параметр не принциально важен");
-            currentOs = scanner.nextLine();
+            String currentOs = scanner.nextLine();
             String osMeaning = osMap.get(currentOs);
             if (osMap.containsKey(currentOs)) {
                 filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getOs(), osMeaning));
@@ -134,17 +132,17 @@ public class MainNotebook2 {
                 System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
             }
         }
-        
+
         //Критерий для фильтрации по Цвету, который исключает из множества отфильтрованных ноутбуков
         //неподходящие этому критерию ноутбуки
         //Вводим бесконечный цикл while для проверки ввода
-        String currentColor = "";
+
         while (true) {
             System.out.println("Выберите цвет: ");
             System.out.println("1 - Белый");
             System.out.println("2 - Черный");
             System.out.println("3 - Для меня цвет не важен");
-            currentColor = scanner.nextLine();
+            String currentColor = scanner.nextLine();
             String colorMeaning = colorMap.get(currentColor);
             if (colorMap.containsKey(currentColor)) {
                 filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getColor(), colorMeaning));
@@ -156,7 +154,7 @@ public class MainNotebook2 {
             }
         }
         scanner.close();
-        
+
         //Вывод отфильтрованного множества ноутбуков
         if (filteredNotebooks.isEmpty()) {
             System.out.println("\nТакого ноутбука, к сожалению, у нас сейчас нет");
