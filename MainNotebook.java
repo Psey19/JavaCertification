@@ -6,6 +6,7 @@ import java.util.*;
 
 public class MainNotebook {
     public static void main(String[] args) {
+        //Создадим экземпляры класса Notebook
         Notebook notebook1 = new Notebook("notebook1", 8, 256, "Windows", "Black");
         Notebook notebook2 = new Notebook("notebook2", 16, 256, "Windows", "Black");
         Notebook notebook3 = new Notebook("notebook3", 32, 256, "Windows", "White");
