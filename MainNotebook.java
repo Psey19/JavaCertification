@@ -58,33 +58,37 @@ public class MainNotebook {
         System.out.println();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Выберите минимальный объем ОЗУ (введите только номер варианта): ");
+        System.out.println("Выберите минимальный объем ОЗУ: ");
         System.out.println("1 - 8ГБ");
         System.out.println("2 - 16ГБ");
         System.out.println("3 - 32ГБ");
+        System.out.println("4 - Для меня этот параметр не принциально важен");
         String ramMin = scanner.nextLine();
         String ramMeaning = ramMap.get(ramMin);
 
 
-        System.out.println("Выберите минимальный объем жёсткого диска (введите только номер варианта): ");
+        System.out.println("Выберите минимальный объем жёсткого диска: ");
         System.out.println("1 - 256ГБ");
         System.out.println("2 - 512ГБ");
         System.out.println("3 - 1024ГБ");
+        System.out.println("4 - Для меня этот параметр не принциально важен");
         String hddMin = scanner.nextLine();
         String hddMeaning = hddMap.get(hddMin);
 
 
 
-        System.out.println("Выберите операционную систему (введите только номер варианта): ");
+        System.out.println("Выберите операционную систему: ");
         System.out.println("1 - Windows");
         System.out.println("2 - macOS");
+        System.out.println("3 - Для меня этот параметр не принциально важен");
         String currentOs = scanner.nextLine();
         String osMeaning = osMap.get(currentOs);
 
 
-        System.out.println("Выберите цвет (введите только номер варианта): ");
+        System.out.println("Выберите цвет: ");
         System.out.println("1 - Белый");
         System.out.println("2 - Черный");
+        System.out.println("3 - Для меня этот параметр не принциально важен");
         String currentColor = scanner.nextLine();
         String colorMeaning = colorMap.get(currentColor);
         scanner.close();
@@ -98,6 +102,8 @@ public class MainNotebook {
                     filteredNotebooks.add(notebook);
                 }
             }
+        } else if (ramMin.equals("4")){
+            filteredNotebooks.addAll(notebooks);
         } else {
             System.out.println("Ошибка при выборе объема ОЗУ");
         }
@@ -105,6 +111,8 @@ public class MainNotebook {
         if (hddMap.containsKey(hddMin)) {
             int minHdd = Integer.parseInt(hddMeaning);
             filteredNotebooks.removeIf(notebook -> notebook.getHdd() < minHdd);
+        } else if (hddMin.equals("4")){
+            filteredNotebooks = filteredNotebooks;
         } else {
             System.out.println("Ошибка при выборе объема жёсткого диска");
             filteredNotebooks.removeAll(filteredNotebooks);
@@ -112,6 +120,8 @@ public class MainNotebook {
 
         if (osMap.containsKey(currentOs)) {
             filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getOs(), osMeaning));
+        } else if (currentOs.equals("3")){
+            filteredNotebooks = filteredNotebooks;
         } else {
             System.out.println("Ошибка при выборе операционной системы");
             filteredNotebooks.removeAll(filteredNotebooks);
@@ -119,6 +129,8 @@ public class MainNotebook {
 
         if (colorMap.containsKey(currentColor)) {
             filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getColor(), colorMeaning));
+        } else if (currentColor.equals("3")){
+            filteredNotebooks = filteredNotebooks;
         } else {
             System.out.println("Ошибка при выборе цвета");
             filteredNotebooks.removeAll(filteredNotebooks);
