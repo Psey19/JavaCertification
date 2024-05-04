@@ -26,13 +26,15 @@ public class Notebook {
     private int hdd;        // Объем жесткого диска (в ГБ)
     private String os;   //  Операционная система
     private String color;   //  Цвет
+    private String sn;   //  Серийный номер
 
-    public Notebook(String model, int ram, int hdd, String os, String color) {
+    public Notebook(String model,int ram, int hdd, String os, String color, String sn) {
         this.model = model;
         this.ram = ram;
         this.hdd = hdd;
         this.os = os;
         this.color = color;
+        this.sn = sn;
     }
 
     // Геттеры
@@ -53,6 +55,9 @@ public class Notebook {
     }
     public String getColor() {
         return color;
+    }
+    public String getSn() {
+        return sn;
     }
 
     // Сеттеры
@@ -75,6 +80,9 @@ public class Notebook {
     public void setColor(String color) {
         this.color = color;
     }
+    public void setSn(String sn) {
+        this.sn = sn;
+    }
 
     @Override
     public String toString() {
@@ -91,13 +99,12 @@ public class Notebook {
             return false;
         }
         Notebook notebook = (Notebook) obj;
-        return (model.equals(notebook.model)) && (ram == notebook.ram) && (hdd == notebook.hdd) && (os.equals(notebook.os)) && (color.equals(notebook.color));
+        return (model.equals(notebook.model)) && (ram == notebook.ram) && (hdd == notebook.hdd)
+                && (os.equals(notebook.os)) && (color.equals(notebook.color) && (sn.equals(notebook.sn)));
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(model, ram, hdd, os, color);
+        return Objects.hash(model, ram, hdd, os, color, sn);
     }
 }
-
