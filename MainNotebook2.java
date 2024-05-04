@@ -230,6 +230,7 @@ public class MainNotebook2 {
         }
         if (notebooks.isEmpty()) {
             System.out.println("\nМагазин закрыт!!!\n");
+            scanner.close();
         } else{
             filterParamsNotebook(notebooks);
         }
