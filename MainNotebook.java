@@ -58,7 +58,7 @@ public class MainNotebook {
         System.out.println();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Выберите минимальный объем ОЗУ: ");
+        System.out.println("Выберите минимальный объем ОЗУ (введите только номер варианта): ");
         System.out.println("1 - 8ГБ");
         System.out.println("2 - 16ГБ");
         System.out.println("3 - 32ГБ");
@@ -66,7 +66,7 @@ public class MainNotebook {
         String ramMeaning = ramMap.get(ramMin);
 
 
-        System.out.println("Выберите минимальный объем жёсткого диска: ");
+        System.out.println("Выберите минимальный объем жёсткого диска (введите только номер варианта): ");
         System.out.println("1 - 256ГБ");
         System.out.println("2 - 512ГБ");
         System.out.println("3 - 1024ГБ");
@@ -75,14 +75,14 @@ public class MainNotebook {
 
 
 
-        System.out.println("Выберите операционную систему: ");
+        System.out.println("Выберите операционную систему (введите только номер варианта): ");
         System.out.println("1 - Windows");
         System.out.println("2 - macOS");
         String currentOs = scanner.nextLine();
         String osMeaning = osMap.get(currentOs);
 
 
-        System.out.println("Выберите цвет: ");
+        System.out.println("Выберите цвет (введите только номер варианта): ");
         System.out.println("1 - Белый");
         System.out.println("2 - Черный");
         String currentColor = scanner.nextLine();
