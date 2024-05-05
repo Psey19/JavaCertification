@@ -26,8 +26,8 @@ public class MainNotebook2 {
         Notebook notebook18 = new Notebook("notebook18", 16, 1024, "macOS", "White", "sn118");
         Notebook notebook19 = new Notebook("notebook19", 32, 2048, "macOS", "Black", "sn119");
         Notebook notebook20 = new Notebook("notebook20", 64, 1024, "Linux", "White", "sn120");
-        Notebook notebook21 = new Notebook("notebook20", 32, 1024, "macOS", "White", "sn120");
-        Notebook notebook22 = new Notebook("notebook20", 32, 1024, "macOS", "White", "sn122");
+        Notebook notebook21 = new Notebook("notebook21", 32, 1024, "macOS", "White", "sn121");
+        Notebook notebook22 = new Notebook("notebook21", 32, 1024, "macOS", "White", "sn121");
 
     //Создаём множество для хранения интересующих экземпляров класса
         Set<Notebook> notebooks = new HashSet<>(Arrays.asList(notebook1, notebook2, notebook3, notebook4, notebook5,
