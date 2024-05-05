@@ -51,7 +51,6 @@ public class MainNotebook2 {
     }
 
     public static void filterParamsNotebook(Set<Notebook> notebooks) {
-
         LinkedHashMap<Integer, Integer> ramMap = new LinkedHashMap<>();
         LinkedHashMap<Integer, Integer> hddMap = new LinkedHashMap<>();
         LinkedHashMap<Integer, String> osMap = new LinkedHashMap<>();
@@ -65,6 +64,7 @@ public class MainNotebook2 {
         for (Notebook notebook : notebooks) {
             notebookRam.add(notebook.getRam());
         }
+
         System.out.println("\nЗдравствуйте!!! Сейчас мы вам подберём ноутбук по интересующим вас параметрам!!!\n");
 
         Set<Notebook> filteredNotebooks = new HashSet<>();
@@ -106,12 +106,12 @@ public class MainNotebook2 {
             } else {
                 break;
             }
-
         }
 
         for (Notebook notebook : filteredNotebooks) {
             notebookHdd.add(notebook.getHdd());
         }
+
         while (true) {
             if (notebookHdd.size() > 1) {
                 System.out.println("Выберите минимальный желаемый объем жёсткого диска: ");
@@ -144,6 +144,7 @@ public class MainNotebook2 {
         for (Notebook notebook : filteredNotebooks) {
             notebookOs.add(notebook.getOs());
         }
+
         while (true) {
             if (notebookOs.size() > 1) {
                 System.out.println("Выберите операционную систему: ");
@@ -174,10 +175,10 @@ public class MainNotebook2 {
             }
         }
 
-
         for (Notebook notebook : filteredNotebooks) {
             notebookColor.add(notebook.getColor());
         }
+
         while (true) {
             if (notebookColor.size() > 1) {
                 System.out.println("Выберите цвет: ");
@@ -208,40 +209,37 @@ public class MainNotebook2 {
             }
         }
 
-        if (filteredNotebooks.isEmpty()) {
-            System.out.println("\nНоутбуки, к сожалению закончились\n");
-        } else {
-            while (true) {
-                System.out.println("\nВыберите модель, которую хотите купить:");
-                Map<Integer, Notebook> filterMap = new HashMap<>();
-                int num = 1;
-                for (Notebook notebook : filteredNotebooks) {
-                    filterMap.put(num, notebook);
-                    System.out.printf("%d - %s\n", num, notebook);
-                    num++;
-                }
-                System.out.printf("%d - %s\n", num, "Я передумал покупать");
-                Scanner sc = new Scanner(System.in);
-                if (sc.hasNextInt()) {
-                    int currentNotebook = sc.nextInt();
-                    Notebook notebookCurrent = filterMap.get(currentNotebook);
-                    if (filterMap.containsKey(currentNotebook)) {
-                        System.out.printf("\n%s\n%s\n", "Поздравляем вас с покупкой:", notebookCurrent);
-                        notebooks.remove(notebookCurrent);
-                        break;
-                    } else if (currentNotebook == num) {
-                        System.out.println("Возвращайтесь скорее");
-                        break;
-                    } else {
-                        System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта");
-                    }
+        while (true) {
+            System.out.println("\nВыберите модель, которую хотите купить:");
+            Map<Integer, Notebook> filterMap = new HashMap<>();
+            int num = 1;
+            for (Notebook notebook : filteredNotebooks) {
+                filterMap.put(num, notebook);
+                System.out.printf("%d - %s\n", num, notebook);
+                num++;
+            }
+            System.out.printf("%d - %s\n", num, "Я передумал покупать");
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextInt()) {
+                int currentNotebook = sc.nextInt();
+                Notebook notebookCurrent = filterMap.get(currentNotebook);
+                if (filterMap.containsKey(currentNotebook)) {
+                    System.out.printf("\n%s\n%s\n", "Поздравляем вас с покупкой:", notebookCurrent);
+                    notebooks.remove(notebookCurrent);
+                    break;
+                } else if (currentNotebook == num) {
+                    System.out.println("Возвращайтесь скорее");
+                    break;
                 } else {
-                    System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
+                    System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта");
                 }
+            } else {
+                System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
             }
         }
+
         if (notebooks.isEmpty()) {
-            System.out.println("\nМагазин закрыт!!!\n");
+            System.out.println("\nМагазин закрыт!!!\nНоутбуки, к сожалению закончились\n");
         } else {
             filterParamsNotebook(notebooks);
         }
