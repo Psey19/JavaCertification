@@ -67,8 +67,6 @@ public class MainNotebook2 {
         }
         System.out.println("\nЗдравствуйте!!! Сейчас мы вам подберём ноутбук по интересующим вас параметрам!!!\n");
 
-
-
         Set<Notebook> filteredNotebooks = new HashSet<>();
 
         while (true) {
