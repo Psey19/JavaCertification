@@ -61,13 +61,13 @@ public class MainNotebook2 {
         TreeSet<String> notebookOs = new TreeSet<>();
         TreeSet<String> notebookColor = new TreeSet<>();
 
-        for (Notebook notebook : notebooks) {
-            notebookRam.add(notebook.getRam());
-        }
-
         System.out.println("\nЗдравствуйте!!! Сейчас мы вам подберём ноутбук по интересующим вас параметрам!!!\n");
 
         Set<Notebook> filteredNotebooks = new HashSet<>();
+        
+        for (Notebook notebook : notebooks) {
+            notebookRam.add(notebook.getRam());
+        }
 
         while (true) {
             if (notebookRam.size() > 1) {
