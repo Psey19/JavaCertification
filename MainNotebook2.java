@@ -10,6 +10,7 @@ package lesson6.HomeWork6;
 //   Знаю, что проделано много лишней работы и наверняка в каких-то моментах действовал, нерационально используя ресурсы системы,
 //   но я просто набивал руку.
 //   Из явных недочетов пока - это отсутствие проверки на ввод букв вместо цифр, если успею, то попытаюсь исправить и это.
+//   (Ввёл дополнительную проверку на ввод только чисел, как и обещал, но как я только не пытался, не получается закрыть сканер грамотно, но и так работает)
 
 import java.util.*;
 
@@ -64,7 +65,7 @@ public class MainNotebook2 {
         }
         System.out.println("\nЗдравствуйте!!! Сейчас мы вам подберём ноутбук по интересующим вас параметрам!!!\n");
 
-        Scanner scanner = new Scanner(System.in);
+
 
         Set<Notebook> filteredNotebooks = new HashSet<>();
 
@@ -78,19 +79,24 @@ public class MainNotebook2 {
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookRam.size() + 1, "Для меня этот параметр не принципиально важен");
-                int ramChoice = scanner.nextInt();
-                if (ramMap.containsKey(ramChoice)) {
-                    for (Notebook notebook : notebooks) {
-                        if (notebook.getRam() >= ramMap.get(ramChoice)) {
-                            filteredNotebooks.add(notebook);
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNextInt()) {
+                    int ramChoice = sc.nextInt();
+                    if (ramMap.containsKey(ramChoice)) {
+                        for (Notebook notebook : notebooks) {
+                            if (notebook.getRam() >= ramMap.get(ramChoice)) {
+                                filteredNotebooks.add(notebook);
+                            }
                         }
+                        break;
+                    } else if (ramChoice == notebookRam.size() + 1) {
+                        filteredNotebooks.addAll(notebooks);
+                        break;
+                    } else {
+                        System.out.println("\nОшибка ввода!!!Введите число соответствующего варианта\n");
                     }
-                    break;
-                } else if (ramChoice == notebookRam.size() + 1) {
-                    filteredNotebooks.addAll(notebooks);
-                    break;
                 } else {
-                    System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
+                    System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
                 }
             } else if (notebookRam.size() == 1) {
                 for (Notebook notebook : notebooks) {
@@ -100,6 +106,7 @@ public class MainNotebook2 {
             } else {
                 break;
             }
+
         }
 
         for (Notebook notebook : filteredNotebooks) {
@@ -115,16 +122,21 @@ public class MainNotebook2 {
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookHdd.size() + 1, "Для меня этот параметр не принципиально важен");
-                int hddChoice = scanner.nextInt();
-                if (hddMap.containsKey(hddChoice)) {
-                    filteredNotebooks.removeIf(notebook -> notebook.getHdd() < hddMap.get(hddChoice));
-                    break;
-                } else if (hddChoice == notebookHdd.size() + 1) {
-                    break;
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNextInt()) {
+                    int hddChoice = sc.nextInt();
+                    if (hddMap.containsKey(hddChoice)) {
+                        filteredNotebooks.removeIf(notebook -> notebook.getHdd() < hddMap.get(hddChoice));
+                        break;
+                    } else if (hddChoice == notebookHdd.size() + 1) {
+                        break;
+                    } else {
+                        System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
+                    }
                 } else {
-                    System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
+                    System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
                 }
-            }  else {
+            } else {
                 break;
             }
         }
@@ -142,15 +154,20 @@ public class MainNotebook2 {
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookOs.size() + 1, "Для меня этот параметр не принципиально важен");
-                int currentOs = scanner.nextInt();
-                String osMeaning = osMap.get(currentOs);
-                if (osMap.containsKey(currentOs)) {
-                    filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getOs(), osMeaning));
-                    break;
-                } else if (currentOs == notebookOs.size() + 1) {
-                    break;
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNextInt()) {
+                    int currentOs = sc.nextInt();
+                    String osMeaning = osMap.get(currentOs);
+                    if (osMap.containsKey(currentOs)) {
+                        filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getOs(), osMeaning));
+                        break;
+                    } else if (currentOs == notebookOs.size() + 1) {
+                        break;
+                    } else {
+                        System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
+                    }
                 } else {
-                    System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
+                    System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
                 }
             } else {
                 break;
@@ -171,15 +188,20 @@ public class MainNotebook2 {
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookColor.size() + 1, "Для меня цвет не важен");
-                int currentColor = scanner.nextInt();
-                String colorMeaning = colorMap.get(currentColor);
-                if (colorMap.containsKey(currentColor)) {
-                    filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getColor(), colorMeaning));
-                    break;
-                } else if (currentColor == notebookColor.size() + 1) {
-                    break;
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNextInt()) {
+                    int currentColor = sc.nextInt();
+                    String colorMeaning = colorMap.get(currentColor);
+                    if (colorMap.containsKey(currentColor)) {
+                        filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getColor(), colorMeaning));
+                        break;
+                    } else if (currentColor == notebookColor.size() + 1) {
+                        break;
+                    } else {
+                        System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
+                    }
                 } else {
-                    System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
+                    System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
                 }
             } else {
                 break;
@@ -199,24 +221,28 @@ public class MainNotebook2 {
                     num++;
                 }
                 System.out.printf("%d - %s\n", num, "Я передумал покупать");
-                int currentNotebook = scanner.nextInt();
-                Notebook notebookCurrent = filterMap.get(currentNotebook);
-                if (filterMap.containsKey(currentNotebook)) {
-                    System.out.printf("\n%s\n%s\n","Поздравляем вас с покупкой:", notebookCurrent);
-                    notebooks.remove(notebookCurrent);
-                    break;
-                } else if (currentNotebook == num){
-                    System.out.println("Возвращайтесь скорее");
-                    break;
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNextInt()) {
+                    int currentNotebook = sc.nextInt();
+                    Notebook notebookCurrent = filterMap.get(currentNotebook);
+                    if (filterMap.containsKey(currentNotebook)) {
+                        System.out.printf("\n%s\n%s\n", "Поздравляем вас с покупкой:", notebookCurrent);
+                        notebooks.remove(notebookCurrent);
+                        break;
+                    } else if (currentNotebook == num) {
+                        System.out.println("Возвращайтесь скорее");
+                        break;
+                    } else {
+                        System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта");
+                    }
                 } else {
-                    System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта");
+                    System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
                 }
             }
         }
         if (notebooks.isEmpty()) {
             System.out.println("\nМагазин закрыт!!!\n");
-            scanner.close();
-        } else{
+        } else {
             filterParamsNotebook(notebooks);
         }
     }
