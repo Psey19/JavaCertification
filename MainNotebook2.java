@@ -60,7 +60,7 @@ public class MainNotebook2 {
         //Создаём множество для хранения отфильтрованных по критериям ноутбуков
         Set<Notebook> filteredNotebooks = new HashSet<>();
 
-        //Наполняем множество notebookRam имеющимися значениями параметра ОЗУ,
+        //Наполняем множество notebookRam имеющимися значениями параметра ОЗУ из множества всех имеющихся ноутбуков,
         //благодаря типу TreeSet, они отсортируются в порядке возрастания
         for (Notebook notebook : notebooks) {
             notebookRam.add(notebook.getRam());
@@ -136,6 +136,9 @@ public class MainNotebook2 {
             }
         }
 
+        //Наполняем множество notebookHdd имеющимися значениями параметра ЖД уже из множества отфильтрованных ноутбуков,
+        //аналогично будет и для ОС и для Цвета;
+        //благодаря типу TreeSet, они отсортируются в порядке возрастания
         for (Notebook notebook : filteredNotebooks) {
             notebookHdd.add(notebook.getHdd());
         }
