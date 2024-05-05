@@ -49,10 +49,10 @@ public class MainNotebook2 {
 
     public static void filterParamsNotebook(Set<Notebook> notebooks) {
 
-        LinkedHashMap<String, String> ramMap = new LinkedHashMap<>();
-        LinkedHashMap<String, String> hddMap = new LinkedHashMap<>();
-        LinkedHashMap<String, String> osMap = new LinkedHashMap<>();
-        LinkedHashMap<String, String> colorMap = new LinkedHashMap<>();
+        LinkedHashMap<Integer, Integer> ramMap = new LinkedHashMap<>();
+        LinkedHashMap<Integer, Integer> hddMap = new LinkedHashMap<>();
+        LinkedHashMap<Integer, String> osMap = new LinkedHashMap<>();
+        LinkedHashMap<Integer, String> colorMap = new LinkedHashMap<>();
 
         TreeSet<Integer> notebookRam = new TreeSet<>();
         TreeSet<Integer> notebookHdd = new TreeSet<>();
@@ -73,25 +73,20 @@ public class MainNotebook2 {
                 System.out.println("Выберите минимальный желаемый объем ОЗУ: ");
                 int num = 1;
                 for (Integer ram : notebookRam) {
-                    String strRamNum = String.format("%d", num);
-                    String strRamVal = String.format("%d", ram);
-                    ramMap.put(strRamNum, strRamVal);
+                    ramMap.put(num, ram);
                     System.out.printf("%d - %d%s\n", num, ram, "ГБ");
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookRam.size() + 1, "Для меня этот параметр не принципиально важен");
-                String ramChoice = scanner.nextLine();
-                int otherChoice = Integer.parseInt(ramChoice);
-                String ramMeaning = ramMap.get(ramChoice);
+                int ramChoice = scanner.nextInt();
                 if (ramMap.containsKey(ramChoice)) {
-                    int meaningRam = Integer.parseInt(ramMeaning);
                     for (Notebook notebook : notebooks) {
-                        if (notebook.getRam() >= meaningRam) {
+                        if (notebook.getRam() >= ramMap.get(ramChoice)) {
                             filteredNotebooks.add(notebook);
                         }
                     }
                     break;
-                } else if (otherChoice == notebookRam.size() + 1) {
+                } else if (ramChoice == notebookRam.size() + 1) {
                     filteredNotebooks.addAll(notebooks);
                     break;
                 } else {
@@ -115,21 +110,16 @@ public class MainNotebook2 {
                 System.out.println("Выберите минимальный желаемый объем жёсткого диска: ");
                 int num = 1;
                 for (Integer hdd : notebookHdd) {
-                    String strHddNum = String.format("%d", num);
-                    String strHddVal = String.format("%d", hdd);
-                    hddMap.put(strHddNum, strHddVal);
+                    hddMap.put(num, hdd);
                     System.out.printf("%d - %d%s\n", num, hdd, "ГБ");
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookHdd.size() + 1, "Для меня этот параметр не принципиально важен");
-                String hddChoice = scanner.nextLine();
-                int otherChoice = Integer.parseInt(hddChoice);
-                String hddMeaning = hddMap.get(hddChoice);
+                int hddChoice = scanner.nextInt();
                 if (hddMap.containsKey(hddChoice)) {
-                    int meaningHdd = Integer.parseInt(hddMeaning);
-                    filteredNotebooks.removeIf(notebook -> notebook.getHdd() < meaningHdd);
+                    filteredNotebooks.removeIf(notebook -> notebook.getHdd() < hddMap.get(hddChoice));
                     break;
-                } else if (otherChoice == notebookHdd.size() + 1) {
+                } else if (hddChoice == notebookHdd.size() + 1) {
                     break;
                 } else {
                     System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
@@ -147,19 +137,17 @@ public class MainNotebook2 {
                 System.out.println("Выберите операционную систему: ");
                 int num = 1;
                 for (String os : notebookOs) {
-                    String strOsNum = String.format("%d", num);
-                    osMap.put(strOsNum, os);
+                    osMap.put(num, os);
                     System.out.printf("%d - %s\n", num, os);
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookOs.size() + 1, "Для меня этот параметр не принципиально важен");
-                String currentOs = scanner.nextLine();
-                int otherChoice = Integer.parseInt(currentOs);
+                int currentOs = scanner.nextInt();
                 String osMeaning = osMap.get(currentOs);
                 if (osMap.containsKey(currentOs)) {
                     filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getOs(), osMeaning));
                     break;
-                } else if (otherChoice == notebookOs.size() + 1) {
+                } else if (currentOs == notebookOs.size() + 1) {
                     break;
                 } else {
                     System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
@@ -178,19 +166,17 @@ public class MainNotebook2 {
                 System.out.println("Выберите цвет: ");
                 int num = 1;
                 for (String color : notebookColor) {
-                    String strColorNum = String.format("%d", num);
-                    colorMap.put(strColorNum, color);
+                    colorMap.put(num, color);
                     System.out.printf("%d - %s\n", num, color);
                     num++;
                 }
                 System.out.printf("%d - %s\n", notebookColor.size() + 1, "Для меня цвет не важен");
-                String currentColor = scanner.nextLine();
-                int otherChoice = Integer.parseInt(currentColor);
+                int currentColor = scanner.nextInt();
                 String colorMeaning = colorMap.get(currentColor);
                 if (colorMap.containsKey(currentColor)) {
                     filteredNotebooks.removeIf(notebook -> !Objects.equals(notebook.getColor(), colorMeaning));
                     break;
-                } else if (otherChoice == notebookColor.size() + 1) {
+                } else if (currentColor == notebookColor.size() + 1) {
                     break;
                 } else {
                     System.out.println("\nОшибка ввода!!!Введите только номер подходящего вам варианта\n");
@@ -213,14 +199,13 @@ public class MainNotebook2 {
                     num++;
                 }
                 System.out.printf("%d - %s\n", num, "Я передумал покупать");
-                String currentNotebook = scanner.nextLine();
-                int numberNotebook = Integer.parseInt(currentNotebook);
-                Notebook notebookCurrent = filterMap.get(numberNotebook);
-                if (filterMap.containsKey(numberNotebook)) {
+                int currentNotebook = scanner.nextInt();
+                Notebook notebookCurrent = filterMap.get(currentNotebook);
+                if (filterMap.containsKey(currentNotebook)) {
                     System.out.printf("\n%s\n%s\n","Поздравляем вас с покупкой:", notebookCurrent);
                     notebooks.remove(notebookCurrent);
                     break;
-                } else if (numberNotebook == num){
+                } else if (currentNotebook == num){
                     System.out.println("Возвращайтесь скорее");
                     break;
                 } else {
