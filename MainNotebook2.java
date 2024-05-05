@@ -99,9 +99,7 @@ public class MainNotebook2 {
                     System.out.println("\nОшибка ввода!!!Вы ввели не число\n");
                 }
             } else if (notebookRam.size() == 1) {
-                for (Notebook notebook : notebooks) {
-                    filteredNotebooks.add(notebook);
-                }
+                filteredNotebooks.addAll(notebooks);
                 break;
             } else {
                 break;
